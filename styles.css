@@ -821,7 +821,7 @@ footer {
 
   /* --- Grille Générale (2 Colonnes) --- */
   .grid {
-    grid-template-columns: 1fr 1fr; /* <<< Passage à 2 colonnes */
+    grid-template-columns: 1fr 1fr !important; /* <<< Passage à 2 colonnes */
     gap: 0.8rem;                  /* <<< Espacement réduit */
   }
 
@@ -836,7 +836,11 @@ footer {
   }
 
   /* --- Cartes Membres (Ajustements internes pour 2 colonnes) --- */
-  .member-card.grid-item {
+  #members-container.grid { /* Ou juste #members-container si tu es sûr */
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+    .member-card.grid-item {
      padding-bottom: 1rem; /* Espace en bas */
      text-align: center; /* Assurer le centrage */
   }
@@ -983,7 +987,7 @@ footer {
 
   /* --- Grille Générale (2 Colonnes) --- */
   .grid {
-    grid-template-columns: 1fr 1fr; /* <<< Passage à 2 colonnes */
+    grid-template-columns: 1fr 1fr !important; /* <<< Passage à 2 colonnes */
     gap: 0.8rem;                  /* <<< Espacement réduit */
   }
 
@@ -1002,6 +1006,11 @@ footer {
      padding-bottom: 1rem; /* Espace en bas */
      text-align: center; /* Assurer le centrage */
   }
+#members-container.grid { /* Ou juste #members-container si tu es sûr */
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+    
   .member-photo,
   .member-placeholder {
     width: 60px;    /* Photo réduite */
