@@ -550,7 +550,10 @@ label.required:after { content: " *"; color: var(--danger-couleur); font-weight:
   resize: vertical;
   line-height: 1.5;
 }
-
+select::placeholder, input::placeholder, textarea::placeholder {
+  color: var(--color-text-muted); /* Ou var(--encre-secondaire) */
+  opacity: 0.7; /* Déjà un peu transparent */
+}
 /* ======================================== */
 /*        CHECKBOXES STYLE ATELIER         */
 /* ======================================== */
