@@ -561,16 +561,16 @@ label.required:after { content: " *"; color: var(--danger-couleur); font-weight:
 
 /* Style du conteneur de chaque checkbox (label) */
 .checkbox-label {
-  display: block;          /* Prend sa propre ligne */
-  position: relative;      /* Pour positionner les pseudo-éléments */
-  padding-left: 30px;      /* Espace pour la fausse case */
-  margin-bottom: 10px;     /* Espace entre les checkboxes */
-  cursor: pointer;         /* Indique qu'on peut cliquer */
-  font-family: var(--font-corps); /* Police standard pour le texte */
-  font-size: 1rem;         /* Taille de texte standard */
-  color: var(--encre-texte); /* Couleur du texte */
-  line-height: 1.4;        /* Hauteur de ligne pour alignement vertical */
-  -webkit-user-select: none; /* Empêche la sélection du texte */
+  display: block;
+  position: relative; /* <<< IMPORTANT pour positionner ::before et ::after */
+  padding-left: 30px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-family: var(--font-corps);
+  font-size: 1rem;
+  color: var(--encre-texte);
+  line-height: 1.4;
+  -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -587,54 +587,59 @@ label.required:after { content: " *"; color: var(--danger-couleur); font-weight:
 
 /* Créer la fausse boîte (::before sur la label) */
 .checkbox-label::before {
-  content: "";             /* Obligatoire pour que ::before s'affiche */
+  content: "";
   position: absolute;
-  left: 0;                 /* Positionnée à gauche dans le padding */
-  top: 2px;                /* Ajustement vertical (aligné avec le texte) */
-  height: 18px;            /* Taille de la boîte */
-  width: 18px;             /* Taille de la boîte */
-  background-color: transparent; /* Fond initial (vide) */
-  border: 1px solid var(--bordure-crayon); /* Bordure crayon */
-  border-radius: 3px;        /* Coins légèrement arrondis */
-  transition: all 0.2s ease; /* Transition douce pour le changement */
+  left: 0;
+  top: 2px; /* Ajuster si nécessaire pour alignement vertical parfait */
+  height: 18px;
+  width: 18px;
+  background-color: transparent;
+  border: 1px solid var(--bordure-crayon);
+  border-radius: 3px;
+  transition: background-color 0.2s ease, border-color 0.2s ease; /* Transition ajoutée */
 }
 
-/* Effet au survol de la label (la boîte change de bordure) */
-.checkbox-label:hover input[type="checkbox"] ~ ::before, /* Si supporté */
-.checkbox-label:hover::before { /* Solution de repli/standard */
-    border-color: var(--accent-couleur-1); /* Bordure devient couleur accent */
+/* Effet au survol */
+.checkbox-label:hover input[type="checkbox"] ~ ::before, /* Sélecteur moderne */
+.checkbox-label:hover::before { /* Sélecteur simple */
+    border-color: var(--accent-couleur-1);
 }
 
 
-/* Style de la FAUSSE BOÎTE lorsque la VRAIE checkbox est cochée */
+/* --- LOGIQUE D'AFFICHAGE QUAND COCHÉ --- */
+
+/* 1. Style de la BOÎTE quand la checkbox interne est cochée */
 .checkbox-label input[type="checkbox"]:checked ~ ::before {
-    /* Cible le ::before de la label si l'input est coché */
-    /* Ce sélecteur fonctionne car input et ::before sont "frères" conceptuellement via la label */
-    background-color: var(--accent-couleur-1); /* Fond devient couleur accent */
-    border-color: var(--accent-couleur-1); /* Bordure devient couleur accent */
+    background-color: var(--accent-couleur-1);
+    border-color: var(--accent-couleur-1);
 }
 
 
-/* Créer la coche (V) (::after sur la label) */
+/* 2. Création de la COCHE (V) (::after sur la label) */
 .checkbox-label::after {
-  content: "";             /* Obligatoire */
+  content: "";
   position: absolute;
-  display: none;           /* <<< Important : Cachée par défaut */
-  left: 6px;               /* Position X DANS la boîte */
-  top: 5px;                /* Position Y DANS la boîte */
-  width: 5px;              /* Largeur de la branche droite de la coche */
-  height: 10px;            /* Hauteur de la branche droite de la coche */
-  border: solid white;     /* Couleur de la coche (blanche) */
-  border-width: 0 2px 2px 0; /* Dessine la coche (bordure droite et bas) */
-  transform: rotate(45deg); /* Pivote pour faire un V */
+  /* display: none; */  /* <<< ON VA CHANGER CA */
+  opacity: 0; /* <<< ON CACHE VIA OPACITÉ INITIALEMENT */
+  transition: opacity 0.2s ease; /* <<< Transition pour l'apparition */
+
+  left: 6px;  /* Position X */
+  top: 5px;   /* Position Y */
+  width: 5px;   /* Largeur branche */
+  height: 10px;  /* Hauteur branche */
+  border: solid white; /* Couleur de la coche */
+  border-width: 0 2px 2px 0; /* Dessine le V */
+  transform: rotate(45deg); /* Oriente le V */
+  pointer-events: none; /* Pour s'assurer qu'il n'interfère pas avec les clics */
 }
 
-/* Afficher la COCHE lorsque la VRAIE checkbox est cochée */
+/* 3. Afficher la COCHE lorsque la checkbox interne est cochée */
 .checkbox-label input[type="checkbox"]:checked ~ ::after {
-    /* Cible le ::after de la label si l'input est coché */
-    /* Ce sélecteur fonctionne également */
-    display: block; /* <<< Rend la coche visible */
+    /* display: block; */ /* <<< ON NE CHANGE PLUS LE DISPLAY */
+    opacity: 1; /* <<< ON REND LA COCHE VISIBLE VIA OPACITÉ */
 }
+
+/* --- FIN LOGIQUE D'AFFICHAGE --- */
 
 /* Note dans les formulaires */
 .note {
