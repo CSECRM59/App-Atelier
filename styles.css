@@ -1,0 +1,791 @@
+/* ================================================== */
+/*       STYLESHEET AppliCSE - Thème Atelier        */
+/* (Adapté depuis CodeSauv-atelier.txt pour salariés) */
+/* ================================================== */
+
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Patrick+Hand&family=Architects+Daughter&family=Roboto:wght@400;500;700&display=swap');
+
+/* --- VARIABLES CSS & STYLES GÉNÉRAUX --- */
+:root {
+  /* Palette "Atelier" */
+  --papier-bg: #f8f5f0; /* Blanc cassé / Kraft très clair */
+  --encre-texte: #4a4a4a; /* Gris foncé, pas noir pur */
+  --encre-secondaire: #7a7a7a; /* Gris moyen */
+  --bordure-crayon: #dcdcdc;
+  --postit-jaune: #fffacd;
+  --postit-bleu: #d3f1ff;
+  --postit-rose: #ffe4e1;
+  --masking-tape-jaune: #ffe8a0;
+  --masking-tape-vert: #cff0cc;
+  --accent-couleur-1: #677BC4; /* Bleu-violet doux pour liens/boutons */
+  --accent-couleur-2: #ffb347; /* Orange doux */
+  --danger-couleur: #e57373; /* Rouge doux */
+  --success-couleur: #81c784; /* Vert doux */
+
+  /* Typographie */
+  --font-corps: 'Roboto', sans-serif;
+  --font-titre-principal: 'Kalam', cursive;
+  --font-titre-secondaire: 'Patrick Hand', cursive;
+  --font-bouton: 'Architects Daughter', cursive;
+
+  /* Effets */
+  --ombre-legere: 2px 2px 5px rgba(0, 0, 0, 0.08);
+  --ombre-moyenne: 3px 3px 8px rgba(0, 0, 0, 0.12);
+  --ombre-forte: 5px 5px 15px rgba(0, 0, 0, 0.15);
+  --transition-rapide: 0.2s ease-out;
+  --transition-normale: 0.3s ease;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-corps);
+  background-color: var(--papier-bg);
+  /* Optionnel: Texture papier subtile */
+  background-image: url('img/paper.png');
+  color: var(--encre-texte);
+  line-height: 1.6;
+  padding-top: 55px;  /* Espace pour header fixe */
+  padding-bottom: 80px; /* Espace pour footer */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+h1 { /* Titre principal Header */
+  font-family: var(--font-titre-principal);
+  font-size: 2.2rem; /* Légèrement réduit pour header fixe */
+  color: var(--encre-texte); /* Couleur principale du texte */
+  font-weight: 700;
+  margin: 0;
+  text-align: center; /* Centrer dans le header */
+  flex-grow: 1; /* Prendre l'espace disponible */
+}
+
+h2 { /* Titre de Section dans <main> */
+ font-family: var(--font-titre-principal);
+ font-size: 2rem;
+ color: var(--encre-texte);
+ border-bottom: 1px dashed var(--bordure-crayon);
+ padding-bottom: 0.5rem;
+ margin-bottom: 2rem;
+ font-weight: 400;
+ text-align: center; /* Centrer les titres de section */
+}
+
+h3 { /* Titres dans les cartes / Sous-titres */
+    font-family: var(--font-titre-secondaire);
+    font-size: 1.3rem;
+    color: var(--accent-couleur-1);
+    margin-bottom: 0.5rem;
+}
+
+h4 { /* Utilisé dans Partner Cards, Member Cards */
+    font-family: var(--font-titre-secondaire);
+    font-size: 1.1em;
+    color: var(--encre-texte);
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+
+p {
+  margin-bottom: 0.75rem;
+  color: var(--encre-secondaire);
+  font-size: 0.95rem;
+}
+p strong {
+    color: var(--encre-texte);
+    font-weight: 500;
+}
+
+a {
+  color: var(--accent-couleur-1);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-couleur-1);
+  transition: color var(--transition-rapide), border-bottom var(--transition-rapide);
+}
+
+a:hover {
+  color: var(--accent-couleur-2);
+  border-bottom: 1px dotted var(--accent-couleur-2);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 3px;
+  /* Style image standard, peut être surchargé par .grid-item img */
+}
+
+/* --- HEADER (Fixe) --- */
+header {
+  /* Fond légèrement différent, ou garder --papier-bg si préféré */
+  background-color: #f4f1eb; /* Un beige très clair, proche du papier */
+  /* background-color: var(--papier-bg); */ /* Alternative: garder le fond papier */
+
+  /* Bordure plus marquée style croquis */
+  border-bottom: 1px dashed var(--bordure-crayon); /* Trait crayonné */
+
+  box-shadow: var(--ombre-legere); /* Ombre plus subtile */
+  padding: 0.6rem 1rem;   /* Padding réduit pour moins de hauteur */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  height: 55px; /* Hauteur réduite */
+  transition: background-color 0.3s ease; /* Garder la transition si besoin futur */
+}
+
+header img.logo {
+  height: 35px; /* Ajuster selon la taille souhaitée du logo */
+  width: auto;
+  margin-right: 12px; /* Espace entre logo et titre */
+  flex-shrink: 0; /* Empêche le logo de rétrécir */
+}
+
+header h1 {
+  font-family: var(--font-titre-principal);
+  font-size: 1.8rem; /* Taille du titre ajustée */
+  color: var(--encre-texte);
+  font-weight: 700;
+  margin: 0;
+  text-align: left; /* Aligné à gauche, près du logo */
+  flex-grow: 1; /* Prend l'espace restant au milieu */
+  white-space: nowrap; /* Empêche le retour à la ligne */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Ajoute ... si trop long */
+}
+
+#install-button.btn { /* Style spécifique au bouton install dans le header */
+    padding: 0.3rem 0.8rem; /* Padding bouton réduit */
+    font-size: 0.85rem;
+    margin-left: 1rem; /* Espace par rapport au titre */
+    flex-shrink: 0; /* Empêche le bouton de rétrécir */
+    /* Les couleurs et autres styles viennent de .btn */
+}
+
+
+/* --- MENU DE NAVIGATION (POST-ITS) --- */
+.menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 1.5rem 0 3rem 0; /* Marge après header et avant contenu */
+  padding: 0 1rem;
+  position: relative; /* Pour z-index au survol */
+  z-index: 1; /* En dessous du header mais au dessus du contenu normal */
+}
+
+.menu-item {
+  background-color: var(--postit-jaune);
+  border-radius: 3px;
+  width: 95px;
+  height: 95px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: var(--ombre-moyenne);
+  transition: transform var(--transition-rapide), box-shadow var(--transition-rapide);
+  cursor: pointer;
+  text-align: center;
+  /* Rotation initiale via JS */
+}
+
+/* Couleurs alternées */
+.menu-item:nth-child(3n+1) { background-color: var(--postit-bleu); }
+.menu-item:nth-child(3n+2) { background-color: var(--postit-rose); }
+
+.menu-item:hover {
+  transform: rotate(0deg) scale(1.1);
+  box-shadow: var(--ombre-forte);
+  z-index: 10; /* Passe au dessus des autres au survol */
+}
+
+.menu-item i {
+  font-size: 2rem;
+  color: var(--encre-secondaire);
+  margin-bottom: 0.3rem;
+  transition: color var(--transition-rapide);
+}
+
+.menu-item:hover i {
+  color: var(--encre-texte);
+}
+
+.tooltip {
+  display: block;
+  position: static;
+  background: none;
+  color: var(--encre-secondaire);
+  padding: 0;
+  border-radius: 0;
+  font-family: var(--font-titre-secondaire);
+  font-size: 0.8rem;
+  margin-top: 0px;
+  white-space: normal;
+  line-height: 1.2;
+}
+
+/* --- MAIN CONTENT AREA --- */
+main {
+  padding: 1rem 1.5rem;
+  max-width: 900px; /* Un peu plus large pour le contenu */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Section contenant le contenu chargé */
+section {
+    margin-bottom: 40px;
+    animation: fadeIn 0.5s ease forwards; /* Appliquer l'animation */
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- GRILLE & CARTES (Style Atelier .grid-item) --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.grid-item {
+  background: #fff; /* Fond blanc papier */
+  padding: 1.5rem;
+  border-radius: 4px;
+  box-shadow: var(--ombre-legere);
+  border: 1px solid var(--bordure-crayon);
+  position: relative;
+  transition: transform var(--transition-normale), box-shadow var(--transition-normale);
+  display: flex;
+  flex-direction: column;
+  min-height: 200px; /* Hauteur minimale pour la cohérence */
+  /* Rotation initiale via JS */
+}
+
+.grid-item:hover {
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: var(--ombre-forte);
+  z-index: 5;
+}
+
+/* Effet Masking Tape Optionnel (Décommenter si souhaité) */
+
+.grid-item::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 70px;
+  height: 25px;
+  background-color: var(--masking-tape-jaune);
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  border-left: 1px dashed rgba(0,0,0,0.1);
+  border-right: 1px dashed rgba(0,0,0,0.1);
+  transform: translateX(-50%) rotate(-4deg);
+  opacity: 0.75;
+  z-index: 1;
+  pointer-events: none;
+}
+.grid-item:nth-child(2n)::before {
+    background-color: var(--masking-tape-vert);
+    transform: translateX(-50%) rotate(3deg);
+}
+
+
+.grid-item img { /* Style pour images DANS les cartes */
+    border: 1px solid var(--bordure-crayon);
+    padding: 4px;
+    background-color: #fff;
+    box-shadow: var(--ombre-legere);
+    margin-bottom: 1rem;
+    display: block; /* Assure qu'elle prend sa propre ligne */
+}
+
+.grid-item p {
+  font-size: 0.9rem;
+  flex-grow: 1; /* Pour que le contenu pousse le footer de la carte vers le bas */
+  margin-bottom: 0.5rem;
+}
+.grid-item p:last-of-type {
+    margin-bottom: 1rem; /* Espace avant les éventuels éléments en bas */
+}
+
+.grid-item small { /* Pour les dates, statuts etc. */
+    display: block;
+    margin-top: auto; /* Pousse en bas si flex */
+    padding-top: 0.5rem;
+    border-top: 1px dotted var(--bordure-crayon);
+    font-size: 0.8rem;
+    color: var(--encre-secondaire);
+    text-align: right;
+}
+
+/* --- Style pour les cartes Membres spécifiques (adaptation) --- */
+.member-card.grid-item { /* Hérite de .grid-item + spécificités */
+    text-align: center;
+    align-items: center;
+}
+.member-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--bordure-crayon);
+    background-color: var(--papier-bg); /* Fond si image transparente */
+    box-shadow: var(--ombre-legere);
+    padding: 0; /* Override */
+}
+.member-placeholder { /* Placeholder si pas de photo */
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #eee;
+    color: var(--encre-secondaire);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    margin-bottom: 15px;
+    border: 1px dashed var(--bordure-crayon);
+}
+.member-role {
+    font-size: 0.9em;
+    color: var(--accent-couleur-1);
+    font-weight: bold;
+    margin: 0.2rem 0 0.5rem 0;
+}
+.member-email, .member-operation {
+    font-size: 0.85em;
+    color: var(--encre-secondaire);
+    margin: 0;
+    word-break: break-all; /* Pour les emails longs */
+}
+
+/* --- Style pour les cartes Partenaires spécifiques (adaptation) --- */
+.partner-card.grid-item {
+    text-align: center;
+    align-items: center;
+}
+.partner-logo {
+    max-width: 90px; /* Un peu plus grand */
+    max-height: 70px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    border: none !important; /* Pas de bordure/padding/bg style image */
+    padding: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+/* --- Style pour les cartes Partenaires spécifiques (adaptation) --- */
+/* ... autres styles ... */
+
+.partner-logo-placeholder,
+.partner-logo-placeholder-fallback { /* Appliquer aux deux */
+    width: 70px;
+    height: 70px;
+    border-radius: 4px;
+    background-color: #eee;
+    color: var(--encre-secondaire);
+    display: flex; /* Utiliser flex pour centrer */
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    margin: 0 auto 1rem auto; /* Centré horizontalement */
+    border: 1px dashed var(--bordure-crayon);
+}
+
+/* Optionnel: icône différente pour l'erreur */
+.partner-logo-placeholder-fallback i {
+    color: var(--danger-couleur); /* Rouge doux pour indiquer une erreur */
+}
+.partner-description {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Prend l'espace */
+}
+.partner-link {
+    margin-top: auto; /* Pousse vers le bas */
+    padding-top: 0.5rem;
+    border-top: 1px dotted var(--bordure-crayon);
+    width: 100%; /* Prend toute la largeur */
+    text-align: center;
+}
+.partner-link a {
+     font-family: var(--font-bouton);
+     font-size: 0.9rem;
+}
+
+/* --- BOUTONS (Style Atelier) --- */
+.btn {
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: var(--font-bouton);
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all var(--transition-rapide);
+  box-shadow: var(--ombre-legere);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block; /* Comportement bouton */
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: var(--ombre-moyenne);
+}
+.btn:active {
+    transform: translateY(0);
+    box-shadow: var(--ombre-legere);
+}
+
+.btn-primary { /* Utilisé pour submit formulaires */
+  background-color: var(--accent-couleur-1);
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: #5361a1;
+}
+
+.btn-secondary { /* Utilisé pour update button */
+  background-color: var(--masking-tape-jaune);
+  color: var(--encre-texte);
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Simule un bord */
+}
+.btn-secondary:hover {
+  background-color: #fadf90;
+}
+
+/* --- FORMULAIRES (Style Souligné - Appliqué à .form-container) --- */
+.form-container {
+  background: #fff; /* Fond papier blanc */
+  padding: 2rem 2.5rem 2.5rem;
+  border-radius: 5px;
+  border: 1px solid var(--bordure-crayon);
+  max-width: 650px; /* Limite largeur */
+  margin: 0 auto; /* Centre */
+  box-shadow: var(--ombre-moyenne);
+  /* Effet Trombone Optionnel */
+  position: relative;
+}
+/*
+.form-container::before {
+    content: '\f0c6';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: -18px;
+    left: 35px;
+    font-size: 2rem;
+    color: #a0a0a0;
+    transform: rotate(-20deg);
+    z-index: 1;
+} */
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-family: var(--font-titre-secondaire);
+  color: var(--encre-secondaire);
+  font-size: 1rem;
+}
+label.required:after { content: " *"; color: var(--danger-couleur); font-weight: normal; }
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="url"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.6rem 0.1rem;
+  border: none;
+  border-bottom: 1px solid var(--bordure-crayon);
+  border-radius: 0;
+  font-size: 1rem;
+  font-family: var(--font-corps);
+  color: var(--encre-texte);
+  background-color: transparent;
+  transition: border-color var(--transition-rapide);
+  box-shadow: none !important;
+  box-sizing: border-box;
+}
+.form-group select {
+    appearance: none;
+    background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%237a7a7a%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E') no-repeat right .5rem center/10px 10px;
+    padding-right: 1.5rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-bottom: 2px solid var(--accent-couleur-1);
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Checkboxes style atelier */
+.checkbox-group { margin-top: 5px; }
+.checkbox-label {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-weight: normal;
+  color: var(--encre-texte);
+  position: relative;
+  padding-left: 30px; /* Espace pour la case */
+  line-height: 1.4;
+  font-family: var(--font-corps); /* Police normale */
+  user-select: none;
+}
+.checkbox-label input[type="checkbox"] {
+  position: absolute;
+  opacity: 0; /* Cacher la case par défaut */
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+/* Création de la case personnalisée */
+.checkbox-label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  height: 18px;
+  width: 18px;
+  background-color: transparent;
+  border: 1px solid var(--bordure-crayon);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+/* Style quand survolée */
+.checkbox-label:hover::before {
+  border-color: var(--accent-couleur-1);
+}
+/* Style quand cochée */
+.checkbox-label input:checked ~ ::before {
+  background-color: var(--accent-couleur-1);
+  border-color: var(--accent-couleur-1);
+}
+/* Création du V (check) */
+.checkbox-label::after {
+  content: "";
+  position: absolute;
+  display: none; /* Caché par défaut */
+  left: 6px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+/* Afficher le V quand cochée */
+.checkbox-label input:checked ~ ::after {
+  display: block;
+}
+
+/* Note dans les formulaires */
+.note {
+  font-size: 0.9em;
+  color: var(--encre-secondaire);
+  margin: -10px 0 15px 0; /* Ajuster position */
+  padding: 8px 12px;
+  background-color: #fdfdee; /* Jaune très pâle */
+  border-radius: 3px;
+  border-left: 3px solid var(--accent-couleur-2);
+}
+
+/* Bouton Submit dans formulaire */
+.form-container button[type="submit"] {
+  display: block;
+  width: auto;
+  margin: 1.5rem auto 0;
+  padding: 0.7rem 2rem;
+  /* Hérite du style .btn .btn-primary */
+}
+.form-container button[type="submit"]:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+    opacity: 0.7;
+}
+
+/* --- MESSAGES (Confirmation, Erreur, Chargement) --- */
+.confirmation, .form-status-sending, .error-message, .loading-message {
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1.5rem auto; /* Centré */
+  max-width: 600px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  text-align: center;
+  font-family: var(--font-corps);
+}
+.confirmation {
+    background-color: #e8f5e9; color: #2e7d32; border-color: #a5d6a7;
+    display: none; /* Affiché par JS */
+}
+.form-status-sending {
+    background-color: #e3f2fd; color: #0d47a1; border-color: #90caf9;
+    display: none; /* Affiché par JS */
+}
+.error-message {
+    background-color: #ffebee; color: #c62828; border-color: #ef9a9a;
+    /* Affiché par JS si erreur */
+}
+.loading-message {
+    color: var(--encre-secondaire); font-style: italic; text-align: center; padding: 20px;
+    background: none; border: none;
+}
+
+/* --- PAGES TEXTUELLES (AccèsCE, Action Logement) --- */
+.content-page {
+    background: #fff;
+    padding: 2rem 2.5rem;
+    border-radius: 4px;
+    box-shadow: var(--ombre-legere);
+    border: 1px solid var(--bordure-crayon);
+    margin-bottom: 2rem;
+}
+.content-page h3 { /* Sous-titres dans ces pages */
+    border-bottom: 1px dashed var(--bordure-crayon);
+    padding-bottom: 0.3rem;
+    margin-bottom: 1.5rem;
+}
+.content-page ul, .content-page ol {
+    margin-left: 25px;
+    margin-bottom: 1.5rem;
+}
+.content-page li {
+    margin-bottom: 0.5rem;
+}
+/* Bouton spécifique Action Logement / AccèsCE */
+.action-button { /* Style hérité de .btn */
+     margin-top: 1rem;
+     margin-bottom: 0.5rem;
+}
+/* Bloc contact spécifique Action Logement / AccèsCE */
+.contact-commission {
+    margin-top: 2rem;
+    padding: 1rem 1.5rem;
+    background-color: #f9f9f9; /* Fond très léger */
+    border-left: 4px solid var(--accent-couleur-2);
+    border-radius: 3px;
+}
+.contact-commission p { font-size: 0.9rem; margin-bottom: 0.3rem; }
+.contact-commission strong { color: var(--encre-texte); }
+button.inline-link-button { /* Style formulaire inline */
+    background: none; border: none; padding: 0; margin: 0;
+    font: inherit; color: var(--accent-couleur-1);
+    text-decoration: underline; cursor: pointer; font-weight: bold;
+}
+button.inline-link-button:hover { color: var(--accent-couleur-2); }
+
+/* --- FOOTER --- */
+footer {
+  text-align: center;
+  padding: 1rem 1.5rem;
+  background: transparent; /* Pas de fond distinct */
+  color: var(--encre-secondaire);
+  font-size: 0.9em;
+  border-top: 1px solid var(--bordure-crayon);
+  margin-top: 3rem; /* Espace avant le footer */
+  position: relative; /* Ou fixed si besoin */
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; /* Empile les éléments */
+  align-items: center;
+  gap: 0.8rem;
+}
+
+#update-button { /* Style hérité de .btn .btn-secondary */
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem; /* Plus petit */
+    font-size: 0.9rem;
+}
+#update-button:hover {
+     transform: rotate(5deg); /* Légère rotation au survol */
+}
+#update-button i {
+    margin-right: 5px; /* Espace icône/texte */
+    transition: transform 0.3s ease;
+}
+#update-button:hover i {
+    transform: rotate(360deg); /* Icône tourne */
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 768px) {
+  body { padding-top: 60px; } /* Ajuste pour header plus petit */
+  header { height: 60px; padding: 0.8rem 1rem; }
+  header h1 { font-size: 1.8rem; }
+  #install-button { font-size: 0.8em; padding: 0.3rem 0.6rem; }
+  .menu { gap: 1rem; margin-bottom: 2rem; }
+  .menu-item { width: 80px; height: 80px; }
+  .menu-item i { font-size: 1.8rem; }
+  .tooltip { font-size: 0.7rem; }
+  main { padding: 1rem; }
+  h2 { font-size: 1.6rem; margin-bottom: 1.5rem; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }
+  .grid-item { padding: 1rem; }
+  .form-container { padding: 1.5rem 1rem 2rem; }
+  .content-page { padding: 1.5rem 1rem; }
+  .btn { padding: 0.5rem 1.2rem; font-size: 0.9rem;}
+  .member-photo, .member-placeholder { width: 80px; height: 80px; }
+  .partner-logo { max-width: 70px; max-height: 50px; }
+  .partner-logo-placeholder { width: 50px; height: 50px; }
+}
+
+@media (max-width: 480px) {
+  body { padding-top: 50px; }
+  header { height: 50px; padding: 0.5rem 0.8rem; }
+  header h1 { font-size: 1.3rem; }
+  header img.logo {height: 28px;}
+  #install-button { display: none; } /* Cache bouton install sur très petit écran */
+  .menu { gap: 0.8rem; justify-content: space-around; margin: 1rem 0 2rem 0;}
+  .menu-item { width: 70px; height: 70px; }
+  .menu-item i { font-size: 1.6rem; }
+  .grid { grid-template-columns: 1fr; gap: 1rem; } /* Une seule colonne */
+  .grid-item { transform: rotate(0) !important; } /* Annule rotation sur mobile */
+  .grid-item::before { display: none; } /* Cache le scotch sur mobile */
+  .form-container, .content-page { padding: 1rem; }
+  .form-container::before { display: none;} /* Cache trombone sur mobile */
+  footer { padding: 0.8rem 1rem; }
+  .footer-content p { font-size: 0.8em; }
+  #update-button { font-size: 0.8em; padding: 0.4rem 0.8rem; }
+}
