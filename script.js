@@ -429,6 +429,7 @@ function loadContactFormPage() {
             <input type="email" id="contact-email" required placeholder="marie.durand@example.com">
           </div>
           <div class="form-group">
+          <label for="coffee-operation" class="required">Votre Opération</label>
              <select id="contact-operation" required>
                 <option value="" disabled selected>Choisir...</option>
                  <option value="Support">Fonction support</option>
