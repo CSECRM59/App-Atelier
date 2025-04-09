@@ -749,7 +749,7 @@ footer {
     transform: rotate(360deg); /* Icône tourne */
 }
 
-/* --- RESPONSIVE DESIGN --- */
+/* --- RESPONSIVE DESIGN 
 @media (max-width: 768px) {
   body { padding-top: 60px; } /* Ajuste pour header plus petit */
   header { height: 60px; padding: 0.8rem 1rem; }
@@ -769,9 +769,9 @@ footer {
   .member-photo, .member-placeholder { width: 80px; height: 80px; }
   .partner-logo { max-width: 70px; max-height: 50px; }
   .partner-logo-placeholder { width: 50px; height: 50px; }
-}
+}--- */
 
-@media (max-width: 750px) {
+@media (max-width: 768px) {
   /* --- Ajustements Généraux pour Mobile --- */
   body {
     padding-top: 50px; /* Correspond à la hauteur du header mobile */
