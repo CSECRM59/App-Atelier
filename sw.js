@@ -1,5 +1,5 @@
 // Nom du cache avec une version pour forcer la mise à jour si besoin
-const CACHE_NAME = 'cse-atelier-cache-v1'; // <<== CHANGEZ la version si MAJ majeure
+const CACHE_NAME = 'cse-atelier-cache-v2'; // <<== CHANGEZ la version si MAJ majeure
 
 // Fichiers essentiels à mettre en cache
 const FILES_TO_CACHE = [
