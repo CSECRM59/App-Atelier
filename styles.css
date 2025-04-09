@@ -933,3 +933,165 @@ footer {
     padding: 0.4rem 0.8rem;
   }
 }
+@media (max-width: 400px) {
+  /* --- Ajustements Généraux pour Mobile --- */
+  body {
+    padding-top: 50px; /* Correspond à la nouvelle hauteur du header */
+  }
+
+  h2 { /* Titres de section */
+    font-size: 1.4rem;
+  }
+
+  /* --- Header --- */
+  header {
+    height: 50px;
+    padding: 0.5rem 0.8rem;
+  }
+  header img.logo {
+    height: 28px; /* Logo plus petit */
+  }
+  header h1 {
+    font-size: 1.3rem; /* Titre principal plus petit */
+    /* Optionnel : le cacher si pas assez de place avec logo + bouton install */
+    /* display: none; */
+  }
+  /* Optionnel : Cacher bouton install si pas assez de place */
+  /*
+  #install-button.btn {
+    display: none;
+  }
+  */
+
+  /* --- Menu Post-it --- */
+  .menu {
+    gap: 0.8rem; /* Espacement réduit entre les post-its */
+    justify-content: space-around; /* Mieux répartir */
+    margin: 1rem 0 2rem 0; /* Ajuster marges */
+  }
+  .menu-item {
+    width: 70px; /* Taille réduite */
+    height: 70px; /* Taille réduite */
+  }
+  .menu-item i {
+    font-size: 1.6rem; /* Icônes réduites */
+  }
+  .tooltip {
+      font-size: 0.7rem; /* Texte sous icône réduit */
+  }
+
+
+  /* --- Grille Générale (2 Colonnes) --- */
+  .grid {
+    grid-template-columns: 1fr 1fr; /* <<< Passage à 2 colonnes */
+    gap: 0.8rem;                  /* <<< Espacement réduit */
+  }
+
+  /* --- Cartes Grid Item --- */
+  .grid-item {
+    transform: rotate(0) !important; /* Annule la rotation sur mobile */
+    padding: 0.8rem;                 /* <<< Padding interne réduit */
+    min-height: 180px;               /* <<< Hauteur minimale */
+  }
+  .grid-item::before {
+    display: none; /* Cache le scotch (masking tape) sur mobile */
+  }
+
+  /* --- Cartes Membres (Ajustements internes pour 2 colonnes) --- */
+  .member-card.grid-item {
+     padding-bottom: 1rem; /* Espace en bas */
+     text-align: center; /* Assurer le centrage */
+  }
+  .member-photo,
+  .member-placeholder {
+    width: 60px;    /* Photo réduite */
+    height: 60px;   /* Photo réduite */
+    font-size: 1.8em; /* Icône placeholder */
+    margin-bottom: 10px;
+  }
+  .member-card h4 { /* Nom */
+    font-size: 0.9em;
+    line-height: 1.2;
+    -webkit-line-clamp: 2; /* Max 2 lignes */
+     margin-bottom: 3px;
+  }
+  .member-role {
+    font-size: 0.75em;
+    margin-bottom: 5px;
+  }
+  .member-operation {
+    font-size: 0.75em;
+     margin-bottom: 5px;
+  }
+  .member-email {
+    font-size: 0.7em;
+    word-break: break-all; /* Couper email si nécessaire */
+  }
+  /* Optionnel : Cacher l'email si trop serré */
+  /* .member-email { display: none; } */
+
+  /* --- Cartes Partenaires (Ajustements internes pour 2 colonnes) --- */
+  .partner-card.grid-item {
+     /* Styles hérités de .grid-item suffisent souvent */
+     text-align: center;
+  }
+  .partner-logo {
+    max-width: 50px;
+    max-height: 40px;
+    margin-bottom: 8px;
+  }
+  .partner-logo-placeholder {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5em;
+    margin-bottom: 8px;
+  }
+  .partner-card h4 { /* Nom partenaire */
+    font-size: 0.85em;
+    min-height: auto; /* Plus besoin de min-height fixe si on clamp */
+    line-height: 1.2;
+    -webkit-line-clamp: 2; /* Max 2 lignes */
+     margin-bottom: 5px;
+  }
+  .partner-description {
+    font-size: 0.75em;
+    -webkit-line-clamp: 2; /* Max 2 lignes */
+    margin-bottom: 8px;
+  }
+   .partner-link a {
+    font-size: 0.8em;
+   }
+
+  /* --- Formulaires & Pages Texte --- */
+  main {
+      padding: 0.8rem; /* Réduire padding général du contenu */
+  }
+  .form-container,
+  .content-page {
+    padding: 1rem; /* Padding réduit pour formulaires/pages texte */
+    box-shadow: var(--ombre-legere); /* Ombre plus légère suffit */
+  }
+  .form-container::before {
+    display: none; /* Cache l'effet trombone */
+  }
+  .form-group {
+      margin-bottom: 1.2rem; /* Moins d'espace entre champs */
+  }
+  .form-container button[type="submit"] {
+       padding: 0.6rem 1.5rem; /* Bouton un peu plus petit */
+       font-size: 0.9rem;
+  }
+
+  /* --- Footer --- */
+  footer {
+    padding: 0.8rem 1rem;
+    margin-top: 2rem; /* Moins d'espace avant footer */
+  }
+  .footer-content p {
+    font-size: 0.8em; /* Texte copyright plus petit */
+  }
+  #update-button {
+    font-size: 0.8em; /* Bouton màj plus petit */
+    padding: 0.4rem 0.8rem;
+  }
+}
