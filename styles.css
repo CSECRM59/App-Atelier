@@ -616,28 +616,31 @@ label.required:after { content: " *"; color: var(--danger-couleur); font-weight:
 
 
 /* 2. Création de la COCHE (V) (::after sur la label) */
+.checkbox-label.is-checked::before {
+    /* Cible ::before de la label QUAND la label a la classe .is-checked */
+    background-color: var(--accent-couleur-1);
+    border-color: var(--accent-couleur-1);
+}
+
+/* 2. Création de la COCHE (V) (::after sur la label) - Reste identique */
 .checkbox-label::after {
   content: "";
   position: absolute;
-  /* display: none; */  /* <<< ON VA CHANGER CA */
-  opacity: 0; /* <<< ON CACHE VIA OPACITÉ INITIALEMENT */
-  transition: opacity 0.2s ease; /* <<< Transition pour l'apparition */
-
-  left: 6px;  /* Position X */
-  top: 5px;   /* Position Y */
-  width: 5px;   /* Largeur branche */
-  height: 10px;  /* Hauteur branche */
-  border: solid red; /* Couleur de la coche */
-  border-width: 0 2px 2px 0; /* Dessine le V */
-  transform: rotate(45deg); /* Oriente le V */
-  pointer-events: none; /* Pour s'assurer qu'il n'interfère pas avec les clics */
+  opacity: 0; /* Cachée par défaut */
+  transition: opacity 0.2s ease;
+  left: 6px; top: 5px; width: 5px; height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  pointer-events: none;
 }
 
-/* 3. Afficher la COCHE lorsque la checkbox interne est cochée */
-.checkbox-label input[type="checkbox"]:checked ~ ::after {
-    /* display: block; */ /* <<< ON NE CHANGE PLUS LE DISPLAY */
-    opacity: 1; /* <<< ON REND LA COCHE VISIBLE VIA OPACITÉ */
+/* 3. Afficher la COCHE lorsque la LABEL a la classe .is-checked */
+.checkbox-label.is-checked::after {
+    /* Cible ::after de la label QUAND la label a la classe .is-checked */
+    opacity: 1; /* Rend la coche visible */
 }
+
 
 /* --- FIN LOGIQUE D'AFFICHAGE --- */
 
