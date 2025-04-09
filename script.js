@@ -429,10 +429,6 @@ function loadContactFormPage() {
             <input type="email" id="contact-email" required placeholder="marie.durand@example.com">
           </div>
           <div class="form-group">
-            <label for="contact-operation" class="required">Votre Opération</label>
-             <input type="text" id="contact-operation" required placeholder="Ex: AG2R, Support...">
-             
-             
              <select id="contact-operation" required>
                 <option value="" disabled selected>Choisir...</option>
                  <option value="Support">Fonction support</option>
@@ -521,6 +517,37 @@ function loadContactFormPage() {
           });
       });
   }
+    // --- NOUVEAU : GESTION VISUELLE DES CHECKBOXES VIA JS ---
+  const checkboxGroup = contactForm?.querySelector('.checkbox-group');
+  if (checkboxGroup) {
+    // Écouter les changements DANS le groupe pour toutes les checkboxes
+    checkboxGroup.addEventListener('change', function(event) {
+      const targetInput = event.target;
+      // Vérifier si l'élément qui a changé est bien une checkbox dans une label
+      if (targetInput.type === 'checkbox' && targetInput.closest('.checkbox-label')) {
+        const parentLabel = targetInput.closest('.checkbox-label');
+        // Ajouter ou retirer une classe sur la LABEL basée sur l'état coché de l'INPUT
+        if (targetInput.checked) {
+          parentLabel.classList.add('is-checked');
+          console.log('Label class added:', parentLabel); // Debug log
+        } else {
+          parentLabel.classList.remove('is-checked');
+           console.log('Label class removed:', parentLabel); // Debug log
+        }
+      }
+    });
+
+    // Optionnel : Définir l'état initial au chargement (si des cases peuvent être pré-cochées)
+    checkboxGroup.querySelectorAll('input[type="checkbox"]').forEach(input => {
+        const parentLabel = input.closest('.checkbox-label');
+        if (input.checked) {
+            parentLabel.classList.add('is-checked');
+        } else {
+            parentLabel.classList.remove('is-checked');
+        }
+    });
+  }
+  // --- FIN GESTION VISUELLE CHECKBOXES ---
 }
 
 // --- SECTION ACCÈSCE (Dynamique depuis Firestore) ---
