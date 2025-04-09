@@ -126,7 +126,7 @@ function loadMembersPage() {
           <h4>${member.Prenom || ''} ${member.Nom || ''}</h4>
           <p class="member-role">${member.Role || 'Membre'}</p>
           <p class="member-operation">Op: ${member.Operation || '?'}</p>
-          ${member.Mail ? `<p class="member-email"><i class="fas fa-envelope"></i> <a href="mailto:${member.Mail}">${member.Mail}</a></p>` : ''}
+          // ${member.Mail ? `<p class="member-email"><i class="fas fa-envelope"></i> <a href="mailto:${member.Mail}">${member.Mail}</a></p>` : ''}
         `;
         container.appendChild(memberCard);
       });
