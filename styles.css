@@ -627,7 +627,7 @@ label.required:after { content: " *"; color: var(--danger-couleur); font-weight:
   top: 5px;   /* Position Y */
   width: 5px;   /* Largeur branche */
   height: 10px;  /* Hauteur branche */
-  border: solid white; /* Couleur de la coche */
+  border: solid red; /* Couleur de la coche */
   border-width: 0 2px 2px 0; /* Dessine le V */
   transform: rotate(45deg); /* Oriente le V */
   pointer-events: none; /* Pour s'assurer qu'il n'interfère pas avec les clics */
