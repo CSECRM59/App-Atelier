@@ -33,6 +33,7 @@
     <img src="img/logo.png" alt="Logo CSE" class="logo">
     <h1>Votre Espace CSE</h1>
     <button id="install-button" style="display: none;" class="btn">
+        
       <i class="fas fa-download"></i> Installer
     </button>
   </header>
@@ -84,7 +85,7 @@
   <!-- Footer -->
   <footer>
     <div class="footer-content">
-      <p>© 2025 CSE CRM59.</p>
+      <p>© 2025 CSE CRM59. Tous droits réservés.</p>
       <div class="update-section">
         <button id="update-button" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> Mettre à jour</button>
       </div>
@@ -93,7 +94,7 @@
 
   <!-- Scripts -->
   <script src="script.js"></script>
- <script>
+  <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js')
