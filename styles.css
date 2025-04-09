@@ -863,12 +863,12 @@ footer {
 
   /* --- Cartes Grid Item --- */
   .grid-item {
-    transform: rotate(0) !important; /* Annule la rotation sur mobile */
+    /*transform: rotate(0) !important;  Annule la rotation sur mobile */
     padding: 0.8rem;                 /* <<< Padding interne réduit */
     min-height: 180px;               /* <<< Hauteur minimale */
   }
   .grid-item::before {
-    display: none; /* Cache le scotch (masking tape) sur mobile */
+    /*display: none;  Cache le scotch (masking tape) sur mobile */
   }
 
   /* --- Cartes Membres (Ajustements internes pour 2 colonnes) --- */
